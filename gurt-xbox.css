@@ -381,10 +381,10 @@
 
 /* gurtPeek popping up over the top edge, between the triggers */
 .xbox:not(.white) .meta::after {
-  left: 322px;
-  top: 46px;
-  width: 104px;
-  height: 104px;
+  left: 310px;
+  top: 21px;
+  width: 130px;
+  height: 130px;
   background: url("https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/assets/gurtPeek.gif") center / contain no-repeat;
   z-index: 1;
 }
