@@ -2,6 +2,8 @@
 
 Xbox One controller theme for [gamepadviewer.com](https://gamepadviewer.com), matching the Gogurt Twitch look: dark card, red and orange stripes, pink Gurt accents, and embers drifting off the controller.
 
+On the Xbox One skin it's LandanMO's 1 of 1: a LANDANMO nameplate, Gurt emote stickers on the grips (gurtJAM is animated), a row of sub badges, and a holo 1/1 seal. The images live in `assets/`.
+
 **Themed Xbox One skin** (recommended):
 ```
 https://gamepadviewer.com/?p=1&s=1&editcss=https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/gurt-xbox.css

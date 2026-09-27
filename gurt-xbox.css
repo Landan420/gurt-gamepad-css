@@ -8,6 +8,8 @@
     https://gamepadviewer.com/?p=1&css=https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/gurt-xbox.css
 */
 
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
+
 /* palette
    card    #18181b / #0e0e10
    orange  #f97316   light #fdba74   hot #ffd7a8
@@ -337,4 +339,127 @@
   background: linear-gradient(180deg, #fdba74, #e0310f);
   box-shadow: 0 0 14px #f97316;
   border-radius: 5px;
+}
+
+/* ---------- 1 of 1: LandanMO's controller ----------
+   Stickers, nameplate, badges and a holo seal on the Xbox One skin.
+   They hang off empty elements the viewer renders (.meta, .touchpad,
+   .wheels, .fstick), so no button lighting is touched. Skipped on the
+   White skin, whose invert filter would flip the artwork's colors. */
+
+@keyframes holo-shift {
+  0% { filter: hue-rotate(0deg) drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)); }
+  100% { filter: hue-rotate(360deg) drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)); }
+}
+
+@keyframes sticker-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -3px; }
+}
+
+.xbox:not(.white) .meta::before,
+.xbox:not(.white) .meta::after,
+.xbox:not(.white) .touchpad::before,
+.xbox:not(.white) .touchpad::after,
+.xbox:not(.white) .wheels::before,
+.xbox:not(.white) .fstick::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* nameplate under the d-pad and right stick */
+.xbox:not(.white) .meta::before {
+  content: "LANDANMO";
+  left: 298px;
+  top: 452px;
+  width: 154px;
+  height: 46px;
+  box-sizing: border-box;
+  padding-top: 3px;
+  background: linear-gradient(180deg, #2a2a30, #0e0e10);
+  border: 2px solid #f97316;
+  border-radius: 11px;
+  box-shadow:
+    0 0 14px rgba(249, 115, 22, 0.55),
+    inset 0 1px 0 rgba(253, 186, 116, 0.35);
+  font: 21px/26px "Bungee", "Segoe UI Black", sans-serif;
+  letter-spacing: 1px;
+  color: #fdba74;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(249, 115, 22, 0.85);
+}
+
+/* serial line inside the plate */
+.xbox:not(.white) .fstick::before {
+  content: "1 OF 1  \2022  GURT EDITION";
+  left: 298px;
+  top: 481px;
+  width: 154px;
+  font: 700 8.5px/10px "Segoe UI", sans-serif;
+  letter-spacing: 1.6px;
+  color: #ff8fbb;
+  text-align: center;
+  z-index: 4;
+}
+
+/* holo authenticity seal by the Y button */
+.xbox:not(.white) .meta::after {
+  content: "1/1";
+  left: 604px;
+  top: 190px;
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: conic-gradient(#a8f0ff, #c9b6ff, #ffb3e6, #fff1b8, #a7ffcf, #9fc3ff, #a8f0ff);
+  font: 13px/40px "Bungee", "Segoe UI Black", sans-serif;
+  color: #18181b;
+  text-align: center;
+  rotate: -14deg;
+  animation: holo-shift 6s linear infinite;
+}
+
+/* emote stickers on the grips, with a white die-cut edge */
+.xbox:not(.white) .touchpad::before,
+.xbox:not(.white) .touchpad::after {
+  width: 112px;
+  height: 112px;
+  background: center / contain no-repeat;
+  filter:
+    drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff)
+    drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff)
+    drop-shadow(0 5px 6px rgba(0, 0, 0, 0.6));
+  animation: sticker-bob 3.2s ease-in-out infinite;
+}
+
+.xbox:not(.white) .touchpad::before {
+  background-image: url("https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/assets/gurtKing.png");
+  left: 42px;
+  top: 438px;
+  rotate: -12deg;
+}
+
+.xbox:not(.white) .touchpad::after {
+  background-image: url("https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/assets/gurtJAM.gif");
+  left: 596px;
+  top: 434px;
+  rotate: 11deg;
+  animation-delay: 1.6s;
+}
+
+/* sub badge row, top left of the body */
+.xbox:not(.white) .wheels::before {
+  left: 98px;
+  top: 196px;
+  width: 118px;
+  height: 34px;
+  background:
+    url("https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/assets/badge-2y.png") 0 0 / 34px 34px no-repeat,
+    url("https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/assets/badge-5y.png") 42px 0 / 34px 34px no-repeat,
+    url("https://cdn.jsdelivr.net/gh/Landan420/gurt-gamepad-css@main/assets/badge-6.5y.png") 84px 0 / 34px 34px no-repeat;
+  rotate: -9deg;
+  filter: drop-shadow(0 0 5px rgba(249, 115, 22, 0.6));
 }
