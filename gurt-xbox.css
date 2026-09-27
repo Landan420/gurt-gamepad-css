@@ -1,0 +1,340 @@
+/*
+  Gurt Xbox One controller theme for gamepadviewer.com
+  Matches the Gogurt Twitch panels: dark card, red + orange stripes, pink Gurt accents.
+
+  Edit the built-in Xbox One skin:
+    https://gamepadviewer.com/?p=1&s=1&editcss=<raw link to this file>
+  Or use it as a full custom skin:
+    https://gamepadviewer.com/?p=1&css=<raw link to this file>
+*/
+
+/* palette
+   card    #18181b / #0e0e10
+   orange  #f97316   light #fdba74   hot #ffd7a8
+   red     #e0310f
+   pink    #ff8fbb (the Gurt)
+*/
+
+@keyframes ember-breathe {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 5px #f97316)
+      drop-shadow(0 0 16px rgba(224, 49, 15, 0.42));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 12px #fdba74)
+      drop-shadow(0 0 34px rgba(249, 115, 22, 0.72));
+  }
+}
+
+@keyframes ring-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px #f97316,
+      0 0 10px rgba(249, 115, 22, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px #fdba74,
+      0 0 18px rgba(255, 143, 187, 0.8);
+  }
+}
+
+@keyframes gem-breathe {
+  0%, 100% { filter: drop-shadow(0 0 8px #f97316); }
+  50% { filter: drop-shadow(0 0 18px #fdba74) drop-shadow(0 0 26px #ff8fbb); }
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translate(-50%, 18px) scale(1);
+    opacity: 0;
+  }
+  12% { opacity: 0.95; }
+  70% { opacity: 0.65; }
+  100% {
+    transform: translate(-50%, -130px) scale(0.35);
+    opacity: 0;
+  }
+}
+
+@keyframes ember-spark {
+  0% {
+    transform: translate(-50%, 8px) rotate(0deg);
+    opacity: 0;
+  }
+  18% { opacity: 1; }
+  100% {
+    transform: translate(-50%, -95px) rotate(28deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- built-in Xbox One skin (editcss) ---------- */
+
+.controller.xbox,
+.controller.custom {
+  overflow: visible;
+}
+
+.controller.xbox.white,
+.controller.xbox.white.edit {
+  filter:
+    invert(1)
+    hue-rotate(180deg)
+    drop-shadow(0 0 6px #fdba74)
+    drop-shadow(0 0 20px rgba(249, 115, 22, 0.55)) !important;
+}
+
+.controller.xbox:not(.white),
+.controller.xbox.edit:not(.white),
+.controller.edit:not(.white),
+.controller.custom {
+  animation: ember-breathe 3.8s ease-in-out infinite;
+}
+
+/* embers drifting up off the controller */
+.controller.xbox:not(.white)::before,
+.controller.xbox:not(.white)::after,
+.controller.custom .triggers::before,
+.controller.custom .triggers::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 5px;
+  height: 5px;
+  margin: -2px 0 0 -2px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.controller.xbox:not(.white)::before,
+.controller.custom .triggers::before {
+  background: #fdba74;
+  box-shadow:
+    -210px 40px 0 0 #f97316,
+    190px 55px 0 1px #fdba74,
+    -140px 110px 0 0 #e0310f,
+    155px 125px 0 0 #f97316,
+    -250px 90px 0 1px #ff8fbb,
+    230px 20px 0 0 #f97316,
+    -80px 150px 0 0 #e0310f,
+    70px 160px 0 1px #fdba74,
+    -180px -10px 0 0 #f97316,
+    120px -30px 0 0 #ff8fbb,
+    0 40px 0 1px #e0310f,
+    -40px 70px 0 0 #f97316;
+  animation: ember-rise 6.5s ease-out infinite;
+}
+
+.controller.xbox:not(.white)::after,
+.controller.custom .triggers::after {
+  background: #f97316;
+  box-shadow:
+    -160px 70px 0 0 #fdba74,
+    170px 90px 0 0 #e0310f,
+    -230px 30px 0 1px #f97316,
+    210px 130px 0 0 #ff8fbb,
+    -90px 20px 0 0 #e0310f,
+    40px 140px 0 1px #f97316,
+    100px 40px 0 0 #fdba74,
+    -120px 160px 0 0 #e0310f,
+    250px 70px 0 0 #f97316,
+    -20px 100px 0 1px #ff8fbb;
+  animation: ember-spark 5.2s ease-out infinite 1.1s;
+}
+
+.controller.custom .triggers::before,
+.controller.custom .triggers::after {
+  top: 330px;
+}
+
+.controller.disconnected,
+.controller.disconnected::before,
+.controller.disconnected::after,
+.controller.disconnected .stick,
+.controller.disconnected .quadrant {
+  animation: none !important;
+}
+
+.xbox .stick,
+.edit .stick {
+  border-radius: 50% !important;
+  animation: ring-pulse 2.8s ease-in-out infinite;
+}
+
+.xbox .stick.pressed,
+.edit .stick.pressed {
+  animation: none;
+  box-shadow:
+    0 0 0 3px #fdba74,
+    0 0 18px rgba(249, 115, 22, 0.9) !important;
+}
+
+/* pressed buttons light up orange */
+.xbox:not(.white) .button.pressed,
+.xbox:not(.white) .bumper.pressed,
+.xbox:not(.white) .face.pressed,
+.xbox:not(.white) .back.pressed,
+.xbox:not(.white) .start.pressed,
+.edit:not(.white) .button.pressed,
+.edit:not(.white) .bumper.pressed,
+.edit:not(.white) .face.pressed {
+  filter:
+    brightness(1.3)
+    sepia(1)
+    saturate(7)
+    hue-rotate(-18deg)
+    drop-shadow(0 0 8px #f97316)
+    drop-shadow(0 0 16px rgba(224, 49, 15, 0.65)) !important;
+}
+
+.xbox:not(.white) .trigger,
+.edit:not(.white) .trigger {
+  filter:
+    sepia(1)
+    saturate(7)
+    hue-rotate(-18deg)
+    brightness(1.15)
+    drop-shadow(0 0 10px #f97316) !important;
+}
+
+.xbox .quadrant,
+.edit .quadrant {
+  animation: gem-breathe 2.4s ease-in-out infinite;
+}
+
+/* ---------- full custom skin (css=) ---------- */
+
+.controller.custom {
+  width: 750px;
+  height: 630px;
+  background: transparent;
+  position: relative;
+}
+
+/* the shell: dark Twitch card with the panel stripes across the grips */
+.controller.custom::before {
+  content: "";
+  position: absolute;
+  left: 78px;
+  top: 118px;
+  width: 594px;
+  height: 392px;
+  background:
+    linear-gradient(188deg, transparent 67%, #e0310f 67%, #e0310f 74%, #f97316 74%),
+    radial-gradient(ellipse at 50% 18%, rgba(249, 115, 22, 0.14) 0%, transparent 46%),
+    linear-gradient(165deg, #242428 0%, #18181b 42%, #0e0e10 100%);
+  border-radius: 78px 78px 168px 168px / 58px 58px 210px 210px;
+  border: 2px solid #f97316;
+  box-shadow:
+    0 0 0 1px #5a1d06,
+    0 0 28px rgba(249, 115, 22, 0.45),
+    inset 0 1px 0 rgba(253, 186, 116, 0.32);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.custom.disconnected div { display: none; }
+
+.custom .triggers { width: 446px; height: 121px; position: absolute; left: 152px; z-index: 2; }
+.custom .trigger {
+  width: 88px;
+  height: 121px;
+  background: linear-gradient(180deg, #ffd7a8, #f97316 42%, #e0310f);
+  border-radius: 16px 16px 30px 30px;
+  opacity: 0;
+}
+.custom .trigger.left { float: left; }
+.custom .trigger.right { float: right; }
+
+.custom .bumpers { position: absolute; width: 536px; height: 61px; left: 107px; top: 129px; z-index: 2; }
+.custom .bumper {
+  width: 170px;
+  height: 28px;
+  margin-top: 16px;
+  border: 1.5px solid rgba(249, 115, 22, 0.55);
+  border-radius: 10px;
+  background: rgba(14, 14, 16, 0.9);
+  box-sizing: border-box;
+}
+.custom .bumper.left { float: left; }
+.custom .bumper.right { float: right; }
+.custom .bumper.pressed {
+  background: linear-gradient(180deg, #fdba74, #f97316 55%, #e0310f);
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.85);
+}
+
+/* guide button: a little pink Gurt-colored gem */
+.custom .quadrant {
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  top: 258px;
+  left: 354px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, #ffd6e6, #ff8fbb 34%, #d9467f 68%, #0e0e10 70%);
+}
+
+.custom .arrows { position: absolute; width: 141px; height: 33px; top: 264px; left: 306px; z-index: 2; }
+.custom .back,
+.custom .start {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background: #0e0e10;
+  box-shadow: 0 0 0 2px #f97316;
+}
+.custom .back { float: left; }
+.custom .start { float: right; }
+.custom .back.pressed,
+.custom .start.pressed { background: #f97316; box-shadow: 0 0 14px #fdba74; }
+
+.custom .abxy { position: absolute; width: 153px; height: 156px; top: 192px; left: 488px; z-index: 2; }
+.custom .button {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #2e2e33, #0e0e10);
+  box-shadow: 0 0 0 2px #f97316;
+}
+.custom .a { top: 108px; left: 55px; }
+.custom .b { top: 58px; right: 0; }
+.custom .x { top: 58px; left: 4px; }
+.custom .y { left: 55px; top: 7px; }
+.custom .button.pressed {
+  margin-top: 0;
+  background: radial-gradient(circle at 32% 28%, #ffe4c7, #f97316 52%, #e0310f);
+  box-shadow: 0 0 18px #f97316;
+}
+
+.custom .sticks { position: absolute; width: 371px; height: 196px; top: 239px; left: 144px; z-index: 2; }
+.custom .stick {
+  position: absolute;
+  height: 83px;
+  width: 83px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #3a3a40, #0e0e10);
+  box-shadow: 0 0 0 3px #f97316, 0 0 14px rgba(249, 115, 22, 0.45);
+}
+.custom .stick.left { top: 0; left: 0; }
+.custom .stick.right { top: 113px; left: 288px; }
+.custom .stick.pressed { box-shadow: 0 0 0 3px #ff8fbb, 0 0 22px #f97316; }
+
+.custom .dpad { position: absolute; width: 110px; height: 111px; top: 345px; left: 223px; z-index: 2; }
+.custom .face { position: absolute; opacity: 1; background: transparent; }
+.custom .face.up, .custom .face.down { width: 34px; height: 56px; left: 38px; }
+.custom .face.up { top: 0; }
+.custom .face.down { bottom: 0; }
+.custom .face.left, .custom .face.right { width: 55px; height: 35px; top: 38px; }
+.custom .face.left { left: 0; }
+.custom .face.right { right: 0; }
+.custom .face.pressed {
+  background: linear-gradient(180deg, #fdba74, #e0310f);
+  box-shadow: 0 0 14px #f97316;
+  border-radius: 5px;
+}
